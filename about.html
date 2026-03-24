@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About — Flavor & Form</title>
+<meta name="description" content="Learn about Flavor & Form's culinary philosophy, team, and mission — a premier modern culinary brand based in Washington, DC." />
+<link rel="stylesheet" href="shared.css" />
+<style>
+.about-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 480px;
+  border-bottom: 4px solid var(--black);
+}
+
+.about-hero-left {
+  background: var(--black);
+  color: var(--off-white);
+  padding: 80px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 4px solid var(--black);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-geo-bl {
+  position: absolute;
+  bottom: -40px; left: -40px;
+  width: 200px; height: 200px;
+  border: 20px solid var(--red);
+  opacity: 0.2;
+}
+
+.about-hero-right {
+  position: relative;
+  overflow: hidden;
+}
+
+.about-hero-right img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.manifesto {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 4px solid var(--black);
+}
+
+.manifesto-left {
+  padding: 80px 64px;
+  border-right: var(--border);
+}
+
+.manifesto-right {
+  padding: 80px 64px;
+  background: var(--red);
+  color: #fff;
+}
+
+.manifesto-right h2 {
+  font-family: var(--font-head);
+  font-weight: 900;
+  font-size: 2.2rem;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  line-height: 1.05;
+}
+
+.manifesto-right p { font-size: 0.95rem; line-height: 1.8; opacity: 0.9; margin-bottom: 16px; }
+
+.principles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 4px solid var(--black);
+}
+
+.principle {
+  padding: 56px 48px;
+  border-right: var(--border);
+}
+
+.principle:last-child { border-right: none; }
+
+.principle-num {
+  font-family: var(--font-head);
+  font-weight: 900;
+  font-size: 3.5rem;
+  color: #e0e0dc;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.principle h3 {
+  font-family: var(--font-head);
+  font-weight: 900;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+}
+
+.principle p { font-size: 0.85rem; color: #555; line-height: 1.7; }
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 4px solid var(--black);
+}
+
+.team-card {
+  border-right: var(--border);
+  overflow: hidden;
+}
+
+.team-card:last-child { border-right: none; }
+
+.team-img {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  display: block;
+  border-bottom: var(--border);
+  filter: grayscale(30%);
+  transition: filter 0.3s;
+}
+
+.team-card:hover .team-img { filter: grayscale(0%); }
+
+.team-info { padding: 28px 32px; }
+
+.team-name {
+  font-family: var(--font-head);
+  font-weight: 900;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 4px;
+}
+
+.team-role {
+  font-size: 0.75rem;
+  color: var(--red);
+  font-family: var(--font-head);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.team-bio { font-size: 0.82rem; color: #555; line-height: 1.65; }
+
+.press-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 4px solid var(--black);
+}
+
+.press-item {
+  padding: 40px 32px;
+  border-right: var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.press-item:last-child { border-right: none; }
+
+.press-name {
+  font-family: var(--font-head);
+  font-weight: 900;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #aaa;
+  transition: color 0.2s;
+}
+
+.press-item:hover .press-name { color: var(--black); }
+
+@media (max-width: 1100px) {
+  .about-hero { grid-template-columns: 1fr; }
+  .about-hero-left { padding: 60px 32px; border-right: none; }
+  .about-hero-right { height: 320px; border-top: 4px solid var(--black); }
+  .manifesto { grid-template-columns: 1fr; }
+  .manifesto-left { border-right: none; border-bottom: var(--border); padding: 60px 32px; }
+  .manifesto-right { padding: 60px 32px; }
+  .principles-grid { grid-template-columns: 1fr; }
+  .principle { border-right: none; border-bottom: var(--border); }
+  .team-grid { grid-template-columns: 1fr 1fr; }
+  .team-card:nth-child(2) { border-right: none; }
+  .team-card:nth-child(n+3) { border-top: var(--border); }
+  .press-grid { grid-template-columns: 1fr 1fr; }
+  .press-item:nth-child(2) { border-right: none; }
+  .press-item:nth-child(n+3) { border-top: var(--border); }
+}
+
+@media (max-width: 600px) {
+  .team-grid { grid-template-columns: 1fr; }
+  .team-card { border-right: none; border-bottom: var(--border); }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><div class="nav-logo-text">Flavor<span>&</span>Form</div></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="recipes.html">Recipes</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="index.html#pricing" class="nav-cta" data-modal data-tier="Home Chef">Join Now</a></li>
+  </ul>
+  <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<section class="about-hero">
+  <div class="about-hero-left">
+    <div class="hero-geo-bl"></div>
+    <div class="section-label" style="color:var(--yellow);">Est. Washington DC, 2019</div>
+    <h1 class="section-title" style="font-size:clamp(2.5rem,5vw,4rem);text-transform:uppercase;color:var(--off-white);margin-bottom:24px;">Our Culinary<br>Philosophy</h1>
+    <p style="font-size:0.95rem;color:#aaa;max-width:460px;line-height:1.75;">We believe cooking is an act of design. Every dish is a composition. Every technique is a system. Every flavor is intentional. We built Flavor & Form to prove that constraint breeds creativity — that strict principles don't limit great food, they define it.</p>
+  </div>
+  <div class="about-hero-right">
+    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=900&q=80" alt="Modern kitchen" loading="eager" />
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="manifesto-left">
+    <div class="section-label">Origin Story</div>
+    <h2 class="section-title" style="font-size:2.2rem;text-transform:uppercase;margin-bottom:24px;">Where It Began</h2>
+    <p style="font-size:0.92rem;color:#333;line-height:1.8;margin-bottom:16px;">In 2019, chef Adriana Cruz returned from three years working in Michelin-starred kitchens in Copenhagen and Barcelona with a single conviction: the principles that govern great modernist design — geometric rigor, form following function, and ruthless elimination of the unnecessary — were precisely the principles that governed great cooking.</p>
+    <p style="font-size:0.92rem;color:#333;line-height:1.8;margin-bottom:16px;">She founded Flavor & Form in a 400-square-foot test kitchen in Washington's Columbia Heights neighborhood with $12,000 in savings, a KitchenAid mixer, and a blog. Within eight months, the site had 200,000 monthly readers. The brown butter cookie recipe we published in March 2023 crashed our servers twice.</p>
+    <p style="font-size:0.92rem;color:#333;line-height:1.8;">Today, Flavor & Form reaches 1.2 million monthly readers across the United States, publishes 3 new tested recipes per week, and offers a membership program serving over 12,000 home cooks and culinary professionals.</p>
+  </div>
+  <div class="manifesto-right">
+    <h2>Form Follows<br>Flavor.</h2>
+    <p>The Bauhaus school taught us that objects stripped of ornament — built purely for purpose — become more beautiful than anything decorated could ever be. We apply this to our cooking.</p>
+    <p>Remove everything unnecessary from a dish. What remains is not sparse — it is <strong>essential.</strong> Each ingredient earns its place. Each technique has a function. Each plating choice communicates something precise about what you're about to taste.</p>
+    <p>This is not austere cooking. This is cooking that has been thought through so thoroughly that every single element works — visually, texturally, and on the palate.</p>
+    <button class="btn" style="background:#fff;color:var(--black);border-color:#fff;margin-top:8px;" data-modal data-tier="Free Taste">Join the Community →</button>
+  </div>
+</section>
+
+<!-- PRINCIPLES -->
+<section class="principles-grid">
+  <div class="principle">
+    <div class="principle-num">01</div>
+    <h3>Precision First</h3>
+    <p>Every recipe is tested a minimum of six times. Measurements are exact. Temperatures are verified. Timing windows are validated across different oven types. We don't guess. We measure.</p>
+  </div>
+  <div class="principle">
+    <div class="principle-num">02</div>
+    <h3>Technique Over Trend</h3>
+    <p>Trends cycle. Technique endures. Our curriculum is built on foundational methods — mother sauces, knife skills, bread fermentation, sauce reduction — that will be relevant in 50 years.</p>
+  </div>
+  <div class="principle">
+    <div class="principle-num">03</div>
+    <h3>Beauty Through Restraint</h3>
+    <p>A dish does not need ten components to be beautiful. It needs the right two or three, placed with intention. Our plating philosophy draws directly from Bauhaus geometric composition principles.</p>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section style="border-bottom:4px solid var(--black);">
+  <div style="padding:60px 64px 40px;border-bottom:var(--border);">
+    <div class="section-label">The People</div>
+    <h2 class="section-title" style="font-size:2.2rem;text-transform:uppercase;">Meet the Team</h2>
+  </div>
+  <div class="team-grid">
+    <div class="team-card">
+      <img class="team-img" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=75" alt="Chef Adriana Cruz" loading="lazy" />
+      <div class="team-info">
+        <div class="team-name">Adriana Cruz</div>
+        <div class="team-role">Founder & Head Chef</div>
+        <p class="team-bio">Formerly of Noma Copenhagen and Disfrutar Barcelona. Trained at the Culinary Institute of America. James Beard Award semifinalist, 2024. Adriana's palate and philosophy are the DNA of every recipe on this site.</p>
+      </div>
+    </div>
+    <div class="team-card">
+      <img class="team-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=75" alt="Marcus Webb" loading="lazy" />
+      <div class="team-info">
+        <div class="team-name">Marcus Webb</div>
+        <div class="team-role">Head of Pastry & Baking</div>
+        <p class="team-bio">Pastry chef with 14 years of experience across New York and London. Specializes in laminated doughs, chocolate, and the intersection of classical French technique with contemporary flavor profiles.</p>
+      </div>
+    </div>
+    <div class="team-card">
+      <img class="team-img" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=75" alt="Nadia Osei" loading="lazy" />
+      <div class="team-info">
+        <div class="team-name">Nadia Osei</div>
+        <div class="team-role">Senior Recipe Developer</div>
+        <p class="team-bio">Food scientist by training and chef by passion. Nadia leads our test kitchen, ensuring every recipe is rigorously validated across skill levels, equipment variables, and ingredient sourcing scenarios.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESS -->
+<section style="border-bottom:4px solid var(--black);">
+  <div style="padding:60px 64px 40px;border-bottom:var(--border);">
+    <div class="section-label">Press & Recognition</div>
+    <h2 class="section-title" style="font-size:2rem;text-transform:uppercase;">As Seen In</h2>
+  </div>
+  <div class="press-grid">
+    <div class="press-item"><div class="press-name">Bon Appétit</div></div>
+    <div class="press-item"><div class="press-name">Washington Post</div></div>
+    <div class="press-item"><div class="press-name">Food & Wine</div></div>
+    <div class="press-item"><div class="press-name">Eater</div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="display:grid;grid-template-columns:1fr 1fr;border-bottom:4px solid var(--black);">
+  <div style="padding:80px 64px;border-right:var(--border);">
+    <div class="section-label">Work With Us</div>
+    <h2 class="section-title" style="font-size:2.2rem;text-transform:uppercase;margin-bottom:20px;">Partner or<br>Collaborate</h2>
+    <p style="font-size:0.9rem;color:#555;line-height:1.75;margin-bottom:28px;">We work with premium food brands, kitchen equipment manufacturers, and hospitality groups on brand partnerships, content campaigns, and culinary consulting engagements.</p>
+    <a href="services.html" class="btn btn-primary">View Services →</a>
+  </div>
+  <div style="padding:80px 64px;background:var(--black);color:var(--off-white);">
+    <div class="section-label" style="color:var(--yellow);">Join the Community</div>
+    <h2 class="section-title" style="font-size:2.2rem;text-transform:uppercase;color:var(--off-white);margin-bottom:20px;">Start Cooking<br>Better Today</h2>
+    <p style="font-size:0.9rem;color:#aaa;line-height:1.75;margin-bottom:28px;">Free membership gives you access to 50+ recipes, our weekly newsletter, and the community forum. No credit card required.</p>
+    <button class="btn btn-red" data-modal data-tier="Free Taste">Join Free →</button>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-header"><h3>Unlock Full Access</h3><button class="modal-close">&times;</button></div>
+    <div class="modal-body">
+      <p>Join thousands of passionate home cooks and culinary professionals.</p>
+      <form id="leadForm" novalidate>
+        <div class="form-group"><label>Full Name *</label><input type="text" name="name" placeholder="Jane Doe" required /></div>
+        <div class="form-group"><label>Email Address *</label><input type="email" name="email" placeholder="jane@example.com" required /></div>
+        <div class="form-group"><label>Phone Number</label><input type="tel" name="phone" placeholder="+1 (555) 000-0000" /></div>
+        <div class="form-group"><label>Selected Package</label>
+          <select id="modalTier" name="tier"><option value="Free Taste">Free Taste</option><option value="Home Chef">Home Chef — $12/mo</option><option value="Culinary Master">Culinary Master — $29/mo</option></select>
+        </div>
+        <input type="hidden" id="modalRecipe" name="recipe" value="" />
+        <div class="form-check"><input type="checkbox" id="privacyCheck" required /><label for="privacyCheck">I agree to the <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms of Service</a></label></div>
+        <button type="submit" class="btn btn-red" style="width:100%;justify-content:center;">Get Instant Access →</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="cookie-banner" id="cookieBanner">
+  <p>We use cookies to enhance your experience. <a href="privacy.html">Privacy Policy</a>.</p>
+  <div class="cookie-actions"><button class="cookie-btn cookie-manage" id="cookieManage">Essential Only</button><button class="cookie-btn cookie-accept" id="cookieAccept">Accept All</button></div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col"><div class="footer-brand">Flavor<span>&</span>Form</div><p class="footer-desc">A premier modern culinary brand rooted in geometric precision, bold flavor, and obsessive craft. Based in Washington, DC.</p><div class="footer-socials"><a href="#">IG</a><a href="#">TT</a><a href="#">YT</a><a href="#">PI</a></div></div>
+    <div class="footer-col"><h4>Navigate</h4><ul><li><a href="index.html">Home</a></li><li><a href="recipes.html">Recipes</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Membership</h4><ul><li><a href="index.html#pricing">Free Taste</a></li><li><a href="index.html#pricing">Home Chef — $12/mo</a></li><li><a href="index.html#pricing">Culinary Master — $29/mo</a></li></ul></div>
+    <div class="footer-col"><h4>Legal</h4><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul><div style="margin-top:24px;font-size:0.78rem;color:#555;line-height:1.5;">1200 18th St NW, Suite 400<br>Washington, DC 20036</div></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 Flavor & Form LLC. All rights reserved.</span><div class="footer-legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>

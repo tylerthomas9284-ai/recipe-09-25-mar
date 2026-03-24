@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Recipes — Flavor & Form</title>
+<meta name="description" content="Browse 840+ precision-tested recipes from the Flavor & Form kitchen — baking, fine dining, weeknight meals, and more." />
+<link rel="stylesheet" href="shared.css" />
+<style>
+.page-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 4px solid var(--black);
+  min-height: 280px;
+}
+
+.page-header-left {
+  padding: 64px;
+  border-right: 4px solid var(--black);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.page-header-right {
+  background: var(--black);
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header-right img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+  display: block;
+}
+
+.page-header-right-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--off-white);
+}
+
+.recipes-filter {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 3px solid var(--black);
+  overflow-x: auto;
+}
+
+.filter-btn {
+  padding: 16px 28px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: none;
+  border-right: 2px solid var(--black);
+  background: var(--off-white);
+  color: #666;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.12s, color 0.12s;
+}
+
+.filter-btn:hover { background: var(--black); color: var(--off-white); }
+.filter-btn.active { background: var(--red); color: #fff; }
+.filter-btn:last-child { border-right: none; }
+
+.recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 4px solid var(--black);
+}
+
+.recipe-card {
+  border-right: 3px solid var(--black);
+  border-bottom: 3px solid var(--black);
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--black);
+  display: flex;
+  flex-direction: column;
+  transition: background 0.15s;
+}
+
+.recipe-card:nth-child(3n) { border-right: none; }
+.recipe-card:hover { background: #eee; }
+.recipe-card:hover .recipe-card-title { color: var(--red); }
+
+.recipe-card-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  border-bottom: 3px solid var(--black);
+  filter: grayscale(10%);
+  transition: filter 0.3s, transform 0.3s;
+}
+
+.recipe-card:hover .recipe-card-img { filter: grayscale(0%); transform: scale(1.02); }
+
+.recipe-card-body { padding: 24px; flex: 1; }
+.recipe-card-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.recipe-card-title {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1rem;
+  text-transform: uppercase;
+  line-height: 1.25;
+  margin-bottom: 8px;
+  transition: color 0.15s;
+}
+
+.recipe-card-excerpt { font-size: 0.8rem; color: #666; line-height: 1.6; }
+
+.recipe-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  border-top: 1.5px solid #ddd;
+  font-size: 0.7rem;
+  color: #999;
+  font-family: var(--font-head);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.load-more-bar {
+  padding: 48px;
+  text-align: center;
+  border-bottom: 4px solid var(--black);
+}
+
+@media (max-width: 900px) {
+  .page-header { grid-template-columns: 1fr; }
+  .page-header-right { height: 200px; border-top: 4px solid var(--black); }
+  .page-header-left { padding: 48px 32px; border-right: none; }
+  .recipes-grid { grid-template-columns: 1fr 1fr; }
+  .recipe-card:nth-child(3n) { border-right: 3px solid var(--black); }
+  .recipe-card:nth-child(2n) { border-right: none; }
+}
+
+@media (max-width: 600px) {
+  .recipes-grid { grid-template-columns: 1fr; }
+  .recipe-card { border-right: none !important; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><div class="nav-logo-text">Flavor<span>&</span>Form</div></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="recipes.html" class="active">Recipes</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="index.html#pricing" class="nav-cta" data-modal data-tier="Home Chef">Join Now</a></li>
+  </ul>
+  <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-left">
+    <div class="section-label">840+ Tested Recipes</div>
+    <h1 class="section-title" style="font-size:clamp(2.5rem,5vw,4rem);text-transform:uppercase;">The Recipe<br>Archive</h1>
+    <p style="font-size:0.9rem;color:#555;max-width:480px;line-height:1.7;margin-top:20px;">Every recipe in this archive has been tested a minimum of six times by our test kitchen team before publication. No guesswork. No approximations. Just precision.</p>
+  </div>
+  <div class="page-header-right">
+    <img src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=900&q=75" alt="Recipe kitchen" loading="lazy" />
+    <div class="page-header-right-label">
+      <div style="font-family:var(--font-head);font-weight:900;font-size:5rem;letter-spacing:-0.04em;line-height:1;">840</div>
+      <div style="font-family:var(--font-head);font-weight:700;font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;">Recipes & Counting</div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTERS -->
+<div class="recipes-filter">
+  <button class="filter-btn active" onclick="filterRecipes('all', this)">All Recipes</button>
+  <button class="filter-btn" onclick="filterRecipes('baking', this)">Baking</button>
+  <button class="filter-btn" onclick="filterRecipes('fine-dining', this)">Fine Dining</button>
+  <button class="filter-btn" onclick="filterRecipes('weeknight', this)">Weeknight</button>
+  <button class="filter-btn" onclick="filterRecipes('brunch', this)">Brunch</button>
+  <button class="filter-btn" onclick="filterRecipes('members', this)">Members Only</button>
+  <button class="filter-btn" onclick="filterRecipes('dessert', this)">Dessert</button>
+  <button class="filter-btn" onclick="filterRecipes('vegan', this)">Plant-Based</button>
+</div>
+
+<!-- RECIPE GRID -->
+<div class="recipes-grid" id="recipesGrid">
+
+  <a href="recipe-detail.html" class="recipe-card" data-cat="baking dessert">
+    <img class="recipe-card-img" src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=600&q=75" alt="Brown Butter Cookie" loading="lazy" />
+    <div class="recipe-card-body">
+      <div class="recipe-card-tags"><span class="tag tag-red">🏆 #1 Most Loved</span><span class="tag tag-yellow">Baking</span></div>
+      <h3 class="recipe-card-title">The Ultimate Brown Butter Chocolate Chip Cookie</h3>
+      <p class="recipe-card-excerpt">Browned butter, two sugars, and sea salt flakes transform the classic into something unforgettable.</p>
+    </div>
+    <div class="recipe-card-footer"><span>15 min prep</span><span>Easy</span></div>
+  </a>
+
+  <a href="recipe-detail.html" class="recipe-card" data-cat="fine-dining members">
+    <img class="recipe-card-img" src="https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=600&q=75" alt="Miso Salmon" loading="lazy" />
+    <div class="recipe-card-body">
+      <div class="recipe-card-tags"><span class="tag tag-blue">Fine Dining</span><span class="tag tag-outline">25 min</span></div>
+      <h3 class="recipe-card-title">Miso-Glazed Salmon with Black Sesame & Microgreens</h3>
+      <p class="recipe-card-excerpt">Umami-rich miso glaze, crispy skin, and a precision microgreen garnish for the perfect geometric plate.</p>
+    </div>
+    <div class="recipe-card-footer"><span>25 min total</span><span>Intermediate</span></div>
+  </a>
+
+  <a href="recipe-detail.html" class="recipe-card" data-cat="fine-dining members">
+    <img class="recipe-card-img" src="https://images.unsplash.com/photo-1542834369-f10ebf06d3e5?w=600&q=75" alt="Truffle Pasta" loading="lazy" />
+    <div class="recipe-card-body">
+      <div class="recipe-card-tags"><span class="tag tag-red">Members Only</span><span class="tag tag-outline">35 min</span></div>
+      <h3 class="recipe-card-title">Black Truffle Cacio e Pepe on Hand-Cut Pappardelle</h3>
+      <p class="recipe-card-excerpt">The Roman classic elevated with shaved black truffle and fresh hand-cut pasta ribbons.</p>
+    </div>
+    <div class="recipe-card-footer"><span>35 min total</span><span>Advanced</span></div>
+  </a>
+
+  <a href="recipe-detail.html" class="recipe-card" data-cat="weeknight">
+    <img class="recipe-card-img" src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&q=75" alt="Grain Bowl" loading="lazy" />
+    <div class="recipe-card-body">
+      <div class="recipe-card-tags"><span class="tag tag-yellow">Weeknight</span><span class="tag tag-outline">20 min</span></div>
+      <h3 class="recipe-card-title">Roasted Seasonal Grain Bowl with Tahini & Preserved Lemon</h3>
+      <p class="recipe-card-excerpt">Caramelized root vegetables over farro with a sharp preserved lemon tahini dressing.</p>
+    </div>
+    <div class="recipe-card-footer"><span>20 min total</span><span>Easy</span></div>
+  </a>
+
+  <a href="recipe-detail.html" class="recipe-card" data-cat="brunch">
+    <img class="recipe-card-img" src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&q=75" alt="Avocado Toast" loading="lazy" />
+    <div class="recipe-card-body">
+      <div class="recipe-card-tags"><span class="tag tag-blue">Brunch</span><span class="tag tag-outline">15 min</span></div>
+      <h3 class="recipe-card-title">Architectural Avocado Toast with Crispy Shallots & Za'atar</h3>
+      <p class="recipe-card-excerpt">Whipped avocado on sourdough, finished with crispy golden shallots and a generous dusting of za'atar.</p>
+    </div>
+    <div class="recipe-card-footer"><span>15 min total</span><span>Easy</span></div>
+  </a>
+
+  <a href="recipe-detail.html" class="recipe-card" data-cat="baking dessert members">
+    <img class="recipe-card-img" src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&q=75" alt="Caramel Cake" loading="lazy" />
+    <div class="recipe-card-body">
+      <div class="recipe-card-tags"><span class="tag tag-red">Members Only</span><span class="tag tag-yellow">Dessert</span></div>
+      <h3 class="recipe-card-title">Miso Caramel Layer Cake with Brown Butter Frosting</h3>
+      <p class="recipe-card-excerpt">Six layers of miso-spiked vanilla sponge, salted caramel, and a brown butter cream cheese frosting.</p>
+    </div>
+    <div class="recipe-card-footer"><span>90 min total</span><span>Advanced</span></div>
+  </a>
+
+  <a href="recipe-detail.html" class="recipe-card" data-cat="baking">
+    <img class="recipe-card-img" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&q=75" alt="Sourdough" loading="lazy" />
+    <div class="recipe-card-body">
+      <div class="recipe-card-tags"><span class="tag tag-blue">Baking</span><span class="tag tag-outline">3 days</span></div>
+      <h3 class="recipe-card-title">Open-Crumb Country Sourdough with 78% Hydration</h3>
+      <p class="recipe-card-excerpt">A highly hydrated, slow-fermented sourdough producing an alveolar, translucent crumb and a crackling crust.</p>
+    </div>
+    <div class="recipe-card-footer"><span>3 day process</span><span>Advanced</span></div>
+  </a>
+
+  <a href="recipe-detail.html" class="recipe-card" data-cat="vegan weeknight">
+    <img class="recipe-card-img" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=75" alt="Plant bowl" loading="lazy" />
+    <div class="recipe-card-body">
+      <div class="recipe-card-tags"><span class="tag tag-yellow">Plant-Based</span><span class="tag tag-outline">25 min</span></div>
+      <h3 class="recipe-card-title">Charred Broccolini with White Bean Purée & Lemon Oil</h3>
+      <p class="recipe-card-excerpt">Deeply charred broccolini over a silky white bean and garlic purée with a pool of bright lemon-infused oil.</p>
+    </div>
+    <div class="recipe-card-footer"><span>25 min total</span><span>Easy</span></div>
+  </a>
+
+  <a href="recipe-detail.html" class="recipe-card" data-cat="dessert baking members">
+    <img class="recipe-card-img" src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=600&q=75" alt="Blondies" loading="lazy" />
+    <div class="recipe-card-body">
+      <div class="recipe-card-tags"><span class="tag tag-red">Members Only</span><span class="tag tag-outline">Dessert</span></div>
+      <h3 class="recipe-card-title">Brown Butter Blondies with Salted Tahini Swirl</h3>
+      <p class="recipe-card-excerpt">Ultra-fudgy blondies made with browned butter and swirled with a ribbon of salted tahini paste.</p>
+    </div>
+    <div class="recipe-card-footer"><span>40 min total</span><span>Easy</span></div>
+  </a>
+
+</div>
+
+<div class="load-more-bar">
+  <p style="font-size:0.82rem;color:#888;margin-bottom:20px;">Showing 9 of 840 recipes. Join to unlock the complete archive.</p>
+  <button class="btn btn-primary" data-modal data-tier="Home Chef">Load More Recipes →</button>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-header"><h3>Unlock Full Access</h3><button class="modal-close">&times;</button></div>
+    <div class="modal-body">
+      <p>Join thousands of passionate home cooks. Get instant access to 840+ tested recipes.</p>
+      <form id="leadForm" novalidate>
+        <div class="form-group"><label>Full Name *</label><input type="text" name="name" placeholder="Jane Doe" required /></div>
+        <div class="form-group"><label>Email Address *</label><input type="email" name="email" placeholder="jane@example.com" required /></div>
+        <div class="form-group"><label>Phone Number</label><input type="tel" name="phone" placeholder="+1 (555) 000-0000" /></div>
+        <div class="form-group"><label>Selected Package</label>
+          <select id="modalTier" name="tier">
+            <option value="Free Taste">Free Taste</option>
+            <option value="Home Chef">Home Chef — $12/mo</option>
+            <option value="Culinary Master">Culinary Master — $29/mo</option>
+          </select>
+        </div>
+        <input type="hidden" id="modalRecipe" name="recipe" value="" />
+        <div class="form-check"><input type="checkbox" id="privacyCheck" required /><label for="privacyCheck">I agree to the <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms of Service</a></label></div>
+        <button type="submit" class="btn btn-red" style="width:100%;justify-content:center;">Get Instant Access →</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="cookie-banner" id="cookieBanner">
+  <p>We use cookies to enhance your experience. <a href="privacy.html">Privacy Policy</a>.</p>
+  <div class="cookie-actions"><button class="cookie-btn cookie-manage" id="cookieManage">Essential Only</button><button class="cookie-btn cookie-accept" id="cookieAccept">Accept All</button></div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col"><div class="footer-brand">Flavor<span>&</span>Form</div><p class="footer-desc">A premier modern culinary brand rooted in geometric precision, bold flavor, and obsessive craft.</p><div class="footer-socials"><a href="#">IG</a><a href="#">TT</a><a href="#">YT</a><a href="#">PI</a></div></div>
+    <div class="footer-col"><h4>Navigate</h4><ul><li><a href="index.html">Home</a></li><li><a href="recipes.html">Recipes</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Membership</h4><ul><li><a href="index.html#pricing">Free Taste</a></li><li><a href="index.html#pricing">Home Chef — $12/mo</a></li><li><a href="index.html#pricing">Culinary Master — $29/mo</a></li></ul></div>
+    <div class="footer-col"><h4>Legal</h4><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul><div style="margin-top:24px;font-size:0.78rem;color:#555;line-height:1.5;">1200 18th St NW, Suite 400<br>Washington, DC 20036</div></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 Flavor & Form LLC. All rights reserved.</span><div class="footer-legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+function filterRecipes(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.recipe-card').forEach(card => {
+    if (cat === 'all' || card.dataset.cat?.includes(cat)) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+</body>
+</html>
